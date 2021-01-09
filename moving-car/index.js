@@ -4,11 +4,11 @@ const express = require("express");
 const delay = 250;
 
 class Car {
-  // using a class to avoid early gc
   constructor() {
     this.chip = new Chip(0);
     this.app = express();
     this.app.use(express.static("public"));
+
     this.left = {
       lFwd: this.chip.getLine(13),
       lBwd: this.chip.getLine(6),
@@ -18,8 +18,19 @@ class Car {
       lBwd: this.chip.getLine(26),
     };
 
-    this.sanity(this.left);
-    this.sanity(this.right);
+    this.left.lFwd.requestOutputMode();
+    this.left.lBwd.requestOutputMode();
+    this.left.lFwd.setValue(0);
+    this.left.lBwd.setValue(0);
+    this.left.lFwd.setValue(1);
+    this.left.lBwd.setValue(1);
+
+    this.right.lFwd.requestOutputMode();
+    this.right.lBwd.requestOutputMode();
+    this.right.lFwd.setValue(0);
+    this.right.lBwd.setValue(0);
+    this.right.lFwd.setValue(1);
+    this.right.lBwd.setValue(1);
 
     this.app.get(
       "/forward",
@@ -37,15 +48,6 @@ class Car {
       "/right",
       this.step(this.left.lFwd, this.right.lBwd, "turning right")
     );
-  }
-
-  sanity(wheel) {
-    wheel.lFwd.requestOutputMode();
-    wheel.lBwd.requestOutputMode();
-    wheel.lFwd.setValue(0);
-    wheel.lBwd.setValue(0);
-    wheel.lFwd.setValue(1);
-    wheel.lBwd.setValue(1);
   }
 
   step(line1, line2, message) {
