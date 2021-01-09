@@ -4,6 +4,7 @@ const express = require("express");
 const delay = 250;
 
 class Car {
+  // using a class to avoid early gc
   constructor() {
     this.chip = new Chip(0);
     this.app = express();
@@ -39,7 +40,7 @@ class Car {
         this.right.lineForward.setValue(1);
         res.send("ok");
         console.log("moving forward");
-      }, delay);
+      }, req.query.d || delay);
     });
     this.app.get("/backward", (req, res) => {
       this.left.lineBackward.setValue(0);
@@ -49,7 +50,7 @@ class Car {
         this.right.lineBackward.setValue(1);
         res.send("ok");
         console.log("moving backward");
-      }, delay);
+      }, req.query.d || delay);
     });
     this.app.get("/left", (req, res) => {
       this.left.lineBackward.setValue(0);
@@ -59,7 +60,7 @@ class Car {
         this.right.lineForward.setValue(1);
         res.send("ok");
         console.log("turning left");
-      }, delay);
+      }, req.query.d || delay);
     });
     this.app.get("/right", (req, res) => {
       this.left.lineForward.setValue(0);
@@ -69,7 +70,7 @@ class Car {
         this.right.lineBackward.setValue(1);
         res.send("ok");
         console.log("turning right");
-      }, delay);
+      }, req.query.d || delay);
     });
   }
 

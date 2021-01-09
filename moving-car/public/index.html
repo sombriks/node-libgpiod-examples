@@ -8,21 +8,23 @@
     <button onclick="backward()">Backward</button>
     <button onclick="left()">Left</button>
     <button onclick="right()">Right</button>
+    <input id="d" type="range" min="50" max="500" step="50" title="duration" />
     <script>
+      const d = document.getElementById("d");
       function forward() {
-        axios.get("/forward");
+        axios.get("/forward", { params: { duration: d.value } });
       }
 
       function backward() {
-        axios.get("/backward");
+        axios.get("/backward"), { params: { duration: d.value } };
       }
 
       function left() {
-        axios.get("/left");
+        axios.get("/left", { params: { duration: d.value } });
       }
 
       function right() {
-        axios.get("/right");
+        axios.get("/right", { params: { duration: d.value } });
       }
     </script>
   </body>
