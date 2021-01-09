@@ -20,12 +20,12 @@ class Car {
     this.left.lineForward.requestOutputMode();
     this.left.lineBackward.requestOutputMode();
     this.left.lineForward.setValue(0);
-    this.left.lineForward.setValue(0);
+    this.left.lineBackward.setValue(0);
 
     this.right.lineForward.requestOutputMode();
     this.right.lineBackward.requestOutputMode();
     this.right.lineForward.setValue(0);
-    this.right.lineForward.setValue(0);
+    this.right.lineBackward.setValue(0);
 
     this.app.get("/forward", (req, res) => {
       this.left.lineForward.setValue(0);
