@@ -10,68 +10,55 @@ class Car {
     this.app = express();
     this.app.use(express.static("public"));
     this.left = {
-      lineForward: this.chip.getLine(13),
-      lineBackward: this.chip.getLine(6),
+      lFwd: this.chip.getLine(13),
+      lBwd: this.chip.getLine(6),
     };
     this.right = {
-      lineForward: this.chip.getLine(19),
-      lineBackward: this.chip.getLine(26),
+      lFwd: this.chip.getLine(19),
+      lBwd: this.chip.getLine(26),
     };
 
-    this.left.lineForward.requestOutputMode();
-    this.left.lineBackward.requestOutputMode();
-    this.left.lineForward.setValue(0);
-    this.left.lineBackward.setValue(0);
-    this.left.lineForward.setValue(1);
-    this.left.lineBackward.setValue(1);
+    this.sanity(this.left);
+    this.sanity(this.right);
 
-    this.right.lineForward.requestOutputMode();
-    this.right.lineBackward.requestOutputMode();
-    this.right.lineForward.setValue(0);
-    this.right.lineBackward.setValue(0);
-    this.right.lineForward.setValue(1);
-    this.right.lineBackward.setValue(1);
+    this.app.get(
+      "/forward",
+      this.step(this.left.lFwd, this.right.lFwd, "moving forward")
+    );
+    this.app.get(
+      "/backward",
+      this.step(this.left.lBwd, this.right.lBwd, "moving backward")
+    );
+    this.app.get(
+      "/left",
+      this.step(this.left.lBwd, this.right.lFwd, "turning left")
+    );
+    this.app.get(
+      "/right",
+      this.step(this.left.lFwd, this.right.lBwd, "turning right")
+    );
+  }
 
-    this.app.get("/forward", (req, res) => {
-      this.left.lineForward.setValue(0);
-      this.right.lineForward.setValue(0);
+  sanity(wheel) {
+    wheel.lFwd.requestOutputMode();
+    wheel.lBwd.requestOutputMode();
+    wheel.lFwd.setValue(0);
+    wheel.lBwd.setValue(0);
+    wheel.lFwd.setValue(1);
+    wheel.lBwd.setValue(1);
+  }
+
+  step(line1, line2, message) {
+    return (req, res) => {
+      line1.setValue(0);
+      line2.setValue(0);
       setTimeout(() => {
-        this.left.lineForward.setValue(1);
-        this.right.lineForward.setValue(1);
+        line1.setValue(1);
+        line2.setValue(1);
         res.send("ok");
-        console.log("moving forward");
+        console.log(message);
       }, req.query.duration || delay);
-    });
-    this.app.get("/backward", (req, res) => {
-      this.left.lineBackward.setValue(0);
-      this.right.lineBackward.setValue(0);
-      setTimeout(() => {
-        this.left.lineBackward.setValue(1);
-        this.right.lineBackward.setValue(1);
-        res.send("ok");
-        console.log("moving backward");
-      }, req.query.duration || delay);
-    });
-    this.app.get("/left", (req, res) => {
-      this.left.lineBackward.setValue(0);
-      this.right.lineForward.setValue(0);
-      setTimeout(() => {
-        this.left.lineBackward.setValue(1);
-        this.right.lineForward.setValue(1);
-        res.send("ok");
-        console.log("turning left");
-      }, req.query.duration || delay);
-    });
-    this.app.get("/right", (req, res) => {
-      this.left.lineForward.setValue(0);
-      this.right.lineBackward.setValue(0);
-      setTimeout(() => {
-        this.left.lineForward.setValue(1);
-        this.right.lineBackward.setValue(1);
-        res.send("ok");
-        console.log("turning right");
-      }, req.query.duration || delay);
-    });
+    };
   }
 
   listen() {
