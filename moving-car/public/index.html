@@ -1,6 +1,21 @@
 <html>
-  <head></head>
+  <head>
+    <script src="axios.min.js"></script>
+  </head>
   <body>
     <h1>Car</h1>
+    <button onclick="forward()">Forward</button>
+    <button onclick="backward()">Backward</button>
+    <button onclick="left()">Left</button>
+    <button onclick="right()">Right</button>
+    <scrip>
+      function forward(){ axios.get("/forward"); } 
+
+      function backward(){ axios.get("/backward"); } 
+
+      function left(){ axios.get("/left"); }
+      
+      function right(){ axios.get("/right"); }
+    </scrip>
   </body>
 </html>
