@@ -22,10 +22,10 @@ class Car {
     this.sanity(this.right);
 
     this.app.get("/forward", (req, res) =>
-      this.step2(this.left.lFwd, this.right.lFwd, req, res, "moving forward")
+      this.step(this.left.lFwd, this.right.lFwd, req, res, "moving forward")
     );
     this.app.get("/backward", (req, res) =>
-      this.step2(this.left.lBwd, this.right.lBwd, req, res, "moving backward")
+      this.step(this.left.lBwd, this.right.lBwd, req, res, "moving backward")
     );
     this.app.get("/left", (req, res) =>
       this.step(this.left.lBwd, this.right.lFwd, req, res, "turning left")
@@ -35,7 +35,7 @@ class Car {
     );
   }
 
-  step2(line1, line2, req, res, message) {
+  step(line1, line2, req, res, message) {
     line1.setValue(0);
     line2.setValue(0);
     setTimeout(() => {
