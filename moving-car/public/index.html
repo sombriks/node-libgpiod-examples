@@ -8,14 +8,22 @@
     <button onclick="backward()">Backward</button>
     <button onclick="left()">Left</button>
     <button onclick="right()">Right</button>
-    <scrip>
-      function forward(){ axios.get("/forward"); } 
+    <script>
+      function forward() {
+        axios.get("/forward");
+      }
 
-      function backward(){ axios.get("/backward"); } 
+      function backward() {
+        axios.get("/backward");
+      }
 
-      function left(){ axios.get("/left"); }
-      
-      function right(){ axios.get("/right"); }
-    </scrip>
+      function left() {
+        axios.get("/left");
+      }
+
+      function right() {
+        axios.get("/right");
+      }
+    </script>
   </body>
 </html>
