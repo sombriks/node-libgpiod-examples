@@ -18,48 +18,21 @@ class Car {
       lBwd: this.chip.getLine(26),
     };
 
-    this.left.lFwd.requestOutputMode();
-    this.left.lBwd.requestOutputMode();
-    this.left.lFwd.setValue(0);
-    this.left.lBwd.setValue(0);
-    this.left.lFwd.setValue(1);
-    this.left.lBwd.setValue(1);
-
-    this.right.lFwd.requestOutputMode();
-    this.right.lBwd.requestOutputMode();
-    this.right.lFwd.setValue(0);
-    this.right.lBwd.setValue(0);
-    this.right.lFwd.setValue(1);
-    this.right.lBwd.setValue(1);
+    this.sanity(this.left);
+    this.sanity(this.right);
 
     this.app.get("/forward", (req, res) =>
       this.step2(this.left.lFwd, this.right.lFwd, req, res, "moving forward")
     );
-    this.app.get(
-      "/backward",
-      this.step(this.left.lBwd, this.right.lBwd, "moving backward")
+    this.app.get("/backward", (req, res) =>
+      this.step2(this.left.lBwd, this.right.lBwd, req, res, "moving backward")
     );
-    this.app.get(
-      "/left",
-      this.step(this.left.lBwd, this.right.lFwd, "turning left")
+    this.app.get("/left", (req, res) =>
+      this.step(this.left.lBwd, this.right.lFwd, req, res, "turning left")
     );
-    this.app.get(
-      "/right",
-      this.step(this.left.lFwd, this.right.lBwd, "turning right")
+    this.app.get("/right", (req, res) =>
+      this.step(this.left.lFwd, this.right.lBwd, req, res, "turning right")
     );
-  }
-
-  step(line1, line2, message) {
-    return (req, res) => {
-      line1.setValue(0);
-      line2.setValue(0);
-      setTimeout(() => {
-        line1.setValue(1);
-        line2.setValue(1);
-        res.send("ok");
-        console.log(message);
-      }, req.query.duration || delay);
-    };
   }
 
   step2(line1, line2, req, res, message) {
@@ -71,6 +44,15 @@ class Car {
       res.send("ok");
       console.log(message);
     }, req.query.duration || delay);
+  }
+
+  sanity(wheel) {
+    wheel.lFwd.requestOutputMode();
+    wheel.lBwd.requestOutputMode();
+    wheel.lFwd.setValue(0);
+    wheel.lBwd.setValue(0);
+    wheel.lFwd.setValue(1);
+    wheel.lBwd.setValue(1);
   }
 
   listen() {
