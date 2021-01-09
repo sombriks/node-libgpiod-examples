@@ -30,6 +30,7 @@ class Car {
         this.left.lineForward.setValue(1);
         this.right.lineForward.setValue(1);
         res.send("ok");
+        console.log("moving forward");
       }, delay);
     });
     this.app.get("/backward", (req, res) => {
@@ -39,6 +40,7 @@ class Car {
         this.left.lineBackward.setValue(1);
         this.right.lineBackward.setValue(1);
         res.send("ok");
+        console.log("moving backward");
       }, delay);
     });
     this.app.get("/left", (req, res) => {
@@ -48,6 +50,7 @@ class Car {
         this.left.lineBackward.setValue(1);
         this.right.lineForward.setValue(1);
         res.send("ok");
+        console.log("turning left");
       }, delay);
     });
     this.app.get("/right", (req, res) => {
@@ -57,6 +60,7 @@ class Car {
         this.left.lineForward.setValue(1);
         this.right.lineBackward.setValue(1);
         res.send("ok");
+        console.log("turning right");
       }, delay);
     });
   }
