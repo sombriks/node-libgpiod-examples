@@ -4,7 +4,7 @@ Second version of [moving car](../moving-car)
 
 This script is simpler and does not have the timeouts the first one had.
 
-Also it have a better html interface.
+Also it have a [better html interface](https://twitter.com/sombriks/status/1348436481669558274).
 
 ## running
 
