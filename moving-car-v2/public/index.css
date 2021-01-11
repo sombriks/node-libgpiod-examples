@@ -1,0 +1,32 @@
+/* nicer controls */
+
+#console,
+#forward,
+#backward,
+#left-bwd,
+#left-fwd,
+#right-bwd,
+#right-fwd {
+  display: flex;
+}
+
+#console {
+  flex-direction: column;
+}
+
+#left-bwd,
+#left-fwd,
+#right-bwd,
+#right-fwd {
+  border: 1em solid black;
+  margin: 1em;
+  width: 40%;
+  height: 40%;
+  min-height: 7em;
+  vertical-align: middle;
+  justify-content: center;
+}
+
+.symbol {
+  font-size: 6em;
+}
