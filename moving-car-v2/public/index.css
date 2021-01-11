@@ -25,6 +25,7 @@
   min-height: 7em;
   vertical-align: middle;
   justify-content: center;
+  user-select: none;
 }
 
 .symbol {

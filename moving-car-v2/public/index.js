@@ -10,10 +10,10 @@ const forwardLeft = (onoff) => () => {
   axios.get(`/left/forward/${onoff}`);
 };
 
-lfwd.addEventListener("mousedown", forwardLeft(1));
-lfwd.addEventListener("mouseup", forwardLeft(0));
-lfwd.addEventListener("touchstart", forwardLeft(1));
-lfwd.addEventListener("touchend", forwardLeft(0));
+lfwd.addEventListener("mousedown", forwardLeft(0));
+lfwd.addEventListener("mouseup", forwardLeft(1));
+lfwd.addEventListener("touchstart", forwardLeft(0));
+lfwd.addEventListener("touchend", forwardLeft(1));
 
 const forwardRight = (onoff) => () => {
   rfwd.style.borderColor = onoff ? "green" : "black";
@@ -21,10 +21,10 @@ const forwardRight = (onoff) => () => {
   axios.get(`/right/forward/${onoff}`);
 };
 
-rfwd.addEventListener("mousedown", forwardRight(1));
-rfwd.addEventListener("mouseup", forwardRight(0));
-rfwd.addEventListener("touchstart", forwardRight(1));
-rfwd.addEventListener("touchend", forwardRight(0));
+rfwd.addEventListener("mousedown", forwardRight(0));
+rfwd.addEventListener("mouseup", forwardRight(1));
+rfwd.addEventListener("touchstart", forwardRight(0));
+rfwd.addEventListener("touchend", forwardRight(1));
 
 const backwardLeft = (onoff) => () => {
   lbwd.style.borderColor = onoff ? "green" : "black";
