@@ -5,7 +5,7 @@ const lbwd = document.getElementById("left-bwd");
 const rbwd = document.getElementById("right-bwd");
 
 const forwardLeft = (onoff) => () => {
-  lfwd.style.borderColor = onoff ? "green" : "black";
+  lfwd.style.borderColor = onoff ? "black" : "green";
   console.log(`sending ${onoff} to forward left`);
   axios.get(`/left/forward/${onoff}`);
 };
@@ -16,7 +16,7 @@ lfwd.addEventListener("touchstart", forwardLeft(0));
 lfwd.addEventListener("touchend", forwardLeft(1));
 
 const forwardRight = (onoff) => () => {
-  rfwd.style.borderColor = onoff ? "green" : "black";
+  rfwd.style.borderColor = onoff ? "black" : "green";
   console.log(`sending ${onoff} to forward right`);
   axios.get(`/right/forward/${onoff}`);
 };
@@ -27,23 +27,23 @@ rfwd.addEventListener("touchstart", forwardRight(0));
 rfwd.addEventListener("touchend", forwardRight(1));
 
 const backwardLeft = (onoff) => () => {
-  lbwd.style.borderColor = onoff ? "green" : "black";
+  lbwd.style.borderColor = onoff ? "black" : "green";
   console.log(`sending ${onoff} to backward left`);
   axios.get(`/left/backward/${onoff}`);
 };
 
-lbwd.addEventListener("mousedown", backwardLeft(1));
-lbwd.addEventListener("mouseup", backwardLeft(0));
-lbwd.addEventListener("touchstart", backwardLeft(1));
-lbwd.addEventListener("touchend", backwardLeft(0));
+lbwd.addEventListener("mousedown", backwardLeft(0));
+lbwd.addEventListener("mouseup", backwardLeft(1));
+lbwd.addEventListener("touchstart", backwardLeft(0));
+lbwd.addEventListener("touchend", backwardLeft(1));
 
 const backwardRight = (onoff) => () => {
-  rbwd.style.borderColor = onoff ? "green" : "black";
+  rbwd.style.borderColor = onoff ? "black" : "green";
   console.log(`sending ${onoff} to backward right`);
   axios.get(`/right/backward/${onoff}`);
 };
 
-rbwd.addEventListener("mousedown", backwardRight(1));
-rbwd.addEventListener("mouseup", backwardRight(0));
-rbwd.addEventListener("touchstart", backwardRight(1));
-rbwd.addEventListener("touchend", backwardRight(0));
+rbwd.addEventListener("mousedown", backwardRight(0));
+rbwd.addEventListener("mouseup", backwardRight(1));
+rbwd.addEventListener("touchstart", backwardRight(0));
+rbwd.addEventListener("touchend", backwardRight(1));
