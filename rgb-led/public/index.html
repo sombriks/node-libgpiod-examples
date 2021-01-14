@@ -32,14 +32,17 @@
       r.onclick = async () => {
         leds[0] = ++leds[0] % 2;
         await fetch(`/red/${leds[0]}`);
+        r.style.borderColor = leds[0] ? "red" : "black";
       };
       g.onclick = async () => {
         leds[1] = ++leds[1] % 2;
         await fetch(`/green/${leds[1]}`);
+        r.style.borderColor = leds[0] ? "green" : "black";
       };
       b.onclick = async () => {
         leds[2] = ++leds[2] % 2;
         await fetch(`/blue/${leds[2]}`);
+        r.style.borderColor = leds[0] ? "blue" : "black";
       };
     </script>
   </body>
