@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>RGB LED</title>
+    <style>
+      .container {
+        display: flex;
+        border: 1px solid black;
+      }
+      .item {
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>RGB LED</h1>
+    <div class="container">
+      <div id="r" class="container item">
+        <h2>Red</h2>
+      </div>
+      <div id="g" class="container item">
+        <h2>Green</h2>
+      </div>
+      <div id="b" class="container item">
+        <h2>Blue</h2>
+      </div>
+    </div>
+    <script>
+      const leds = [0, 0, 0];
+      const r = document.getElementById("r");
+      const g = document.getElementById("g");
+      const b = document.getElementById("b");
+      r.onclick = async () => {
+        await fetch(`/red/${leds[0]}`);
+        leds[0] = ++leds[0] % 2;
+      };
+      g.onclick = async () => {
+        await fetch(`/green/${leds[1]}`);
+        leds[1] = ++leds[1] % 2;
+      };
+      b.onclick = async () => {
+        await fetch(`/blue/${leds[2]}`);
+        leds[2] = ++leds[2] % 2;
+      };
+    </script>
+  </body>
+</html>
