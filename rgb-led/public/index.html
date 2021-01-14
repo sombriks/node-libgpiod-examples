@@ -30,16 +30,16 @@
       const g = document.getElementById("g");
       const b = document.getElementById("b");
       r.onclick = async () => {
-        await fetch(`/red/${leds[0]}`);
         leds[0] = ++leds[0] % 2;
+        await fetch(`/red/${leds[0]}`);
       };
       g.onclick = async () => {
-        await fetch(`/green/${leds[1]}`);
         leds[1] = ++leds[1] % 2;
+        await fetch(`/green/${leds[1]}`);
       };
       b.onclick = async () => {
-        await fetch(`/blue/${leds[2]}`);
         leds[2] = ++leds[2] % 2;
+        await fetch(`/blue/${leds[2]}`);
       };
     </script>
   </body>
