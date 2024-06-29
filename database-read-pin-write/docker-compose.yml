@@ -1,0 +1,13 @@
+---
+services:
+  mysql:
+    image: mysql:8.4.0-oraclelinux9
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_DATABASE: gpiodb
+      MYSQL_USER: gpiousr
+      MYSQL_PASSWORD: gpiopwd
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:Z
