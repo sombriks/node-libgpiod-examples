@@ -12,7 +12,16 @@ app.use('/htmx.org', express.static('node_modules/htmx.org/dist'))
 // ui routes
 app.get('/', (req, res) => {
   const names = gpio.chipNames
-  res.render('pages/index', { names })
+  const chips = names.map(name => {
+    const chip = new gpio.Chip(name)
+    return {
+      name,
+      numberOfLines: chip.numberOfLines,
+      lineNames: chip.lineNames
+    }
+  })
+  console.log(chips)
+  res.render('pages/index', { chips })
 })
 
 app.listen(3000, () => {

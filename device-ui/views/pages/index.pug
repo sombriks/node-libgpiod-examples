@@ -5,8 +5,8 @@ include ../components/gpio-chip
 block content
   .section
     h1 Device info
-    .columns
-      each  name in names
-        .column.is-narrow
-          +gpio-chip(name)  
+    .is-flex.is-flex-wrap-wrap.is-gap-4
+      each  chip in chips
+        .is-flex
+          +gpio-chip(chip)  
   
