@@ -1,0 +1,12 @@
+extends ../layouts/base
+
+include ../components/gpio-chip
+
+block content
+  .section
+    h1 Device info
+    .columns
+      each  name in names
+        .column.is-narrow
+          +gpio-chip(name)  
+  

@@ -1,0 +1,13 @@
+doctype html 
+hrml 
+  head 
+    link(rel='stylesheet', href='/bulma/bulma.css')/
+    script(src='/htmx.org/htmx.js')
+    block head
+  body.content 
+    block content
+    footer
+      .content.has-text-centered
+        p
+          | Device UI - 
+          a(href='/') Home
