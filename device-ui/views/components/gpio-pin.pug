@@ -20,6 +20,12 @@ mixin gpio-pin(line)
             hx-swap="outerHTML") request output mode
       if line.direction == 2
         .card-footer-item
-          .button set 1
+          .button(
+            hx-put=`/chip/${line.chipName}/line/${line.offset}/set/1`
+            hx-target="closest .pin"
+            hx-swap="outerHTML") set 1
         .card-footer-item
-          .button set 0
+          .button(
+            hx-put=`/chip/${line.chipName}/line/${line.offset}/set/0`
+            hx-target="closest .pin"
+            hx-swap="outerHTML") set 0
