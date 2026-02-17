@@ -2,4 +2,6 @@ extends ../layouts/base
 
 block content
   .section
+    a(href="/") Back
     h1= `${chip.name} details` 
+    h2= `Label: ${chip.label}, Lines: ${chip.lines.length}`
