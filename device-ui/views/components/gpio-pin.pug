@@ -3,11 +3,23 @@ include ../controls/pin-consumer
 include ../controls/pin-direction
 
 mixin gpio-pin(line)
-  .card
+  .card.pin
     .card-header 
       .card-header-title= `#${line.offset} ${line.name || '<unnamed>'}` 
     .card-content 
-      .content.is-flex.is-flex-wrap-wrap.is-gap-2 
+      .tags
         +pin-direction(line)
         +pin-active-state(line)
         +pin-consumer(line)
+    .card-footer 
+      if line.direction == 1
+        .card-footer-item
+          .button(
+            hx-put=`/chip/${line.chipName}/line/${line.offset}/request-output`
+            hx-target="closest .pin"
+            hx-swap="outerHTML") request output mode
+      if line.direction == 2
+        .card-footer-item
+          .button set 1
+        .card-footer-item
+          .button set 0

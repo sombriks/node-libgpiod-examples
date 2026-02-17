@@ -30,6 +30,7 @@ app.get('/chip/:name', (req, res) => {
   for (let i = 0; i < chip.numberOfLines; i++) {
     const line = chip.getLine(i)
     lines.push({
+      chipName: chip.name,
       offset: line.offset,
       name: line.name,
       value: line.value,
@@ -38,8 +39,24 @@ app.get('/chip/:name', (req, res) => {
       activeState: line.activeState
     })
   }
-  console.log(lines)
   res.render('pages/chip', { chip: { name: chip.name, label: chip.label, lines } })
+})
+
+app.put('/chip/:chipName/line/:offset/request-output', (req, res) => {
+  const chip = new gpio.Chip(req.params.chipName)
+  const line = chip.getLine(parseInt(req.params.offset))
+  line.requestOutputMode()
+  const result = {
+    chipName: chip.name,
+    offset: line.offset,
+    name: line.name,
+    value: line.value,
+    consumer: line.consumer,
+    direction: line.direction,
+    activeState: line.activeState
+  }
+  line.release()
+  res.render('partials/pin', { result })
 })
 
 // open to busibess
