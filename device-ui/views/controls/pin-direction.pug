@@ -1,0 +1,7 @@
+mixin pin-direction(line)
+  if line.direction == 1
+    .tag.is-info Input
+  else if line.direction == 2
+    .tag.is-success Output
+  else
+    .tag.is-warning Unknown

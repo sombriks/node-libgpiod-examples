@@ -30,11 +30,15 @@ app.get('/chip/:name', (req, res) => {
   for (let i = 0; i < chip.numberOfLines; i++) {
     const line = chip.getLine(i)
     lines.push({
-      offset: i,
+      offset: line.offset,
       name: line.name,
-      value: line.value
+      value: line.value,
+      consumer: line.consumer,
+      direction: line.direction,
+      activeState: line.activeState
     })
   }
+  console.log(lines)
   res.render('pages/chip', { chip: { name: chip.name, label: chip.label, lines } })
 })
 

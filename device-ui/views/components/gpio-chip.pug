@@ -4,10 +4,7 @@ mixin gpio-chip(chip)
       .card-header-title= chip.name
     .card-content 
       .content 
-        p Number of lines: #{chip.numberOfLines}
-        .is-flex.is-flex-wrap-wrap.is-gap-2
-          each lName, i in chip.lineNames
-            .tag.is-info.is-light Line #{i}: #{lName} 
+        p #{chip.numberOfLines} lines
     .card-footer 
       .card-footer-item
         a(href=`/chip/${chip.name}`) View details

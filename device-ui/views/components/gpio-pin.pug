@@ -1,0 +1,13 @@
+include ../controls/pin-active-state
+include ../controls/pin-consumer
+include ../controls/pin-direction
+
+mixin gpio-pin(line)
+  .card
+    .card-header 
+      .card-header-title= `#${line.offset} ${line.name || '<unnamed>'}` 
+    .card-content 
+      .content.is-flex.is-flex-wrap-wrap.is-gap-2 
+        +pin-direction(line)
+        +pin-active-state(line)
+        +pin-consumer(line)

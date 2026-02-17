@@ -1,7 +1,15 @@
 extends ../layouts/base
 
+include ../components/gpio-pin
+
 block content
   .section
     a(href="/") Back
     h1= `${chip.name} details` 
     h2= `Label: ${chip.label}, Lines: ${chip.lines.length}`
+    .is-flex.is-flex-wrap-wrap.is-gap-4
+      each line in chip.lines
+        .is-flex
+          +gpio-pin(line)
+    a(href="/") Back
+    
